@@ -44,7 +44,7 @@ bool is_blade_laptop(IOUSBDeviceInterface **usb_dev) {
  *
  * Returns friendly string of device type
  */
-static ssize_t razer_attr_read_device_type(IOUSBDeviceInterface **usb_dev, char *buf) {
+int razer_attr_read_device_type(IOUSBDeviceInterface **usb_dev, char *buf) {
     UInt16 product = -1;
     (*usb_dev)->GetDeviceProduct(usb_dev, &product);
     
@@ -83,7 +83,7 @@ static ssize_t razer_attr_read_device_type(IOUSBDeviceInterface **usb_dev, char 
  *
  * Returns a string
  */
-static ssize_t razer_attr_read_mode_game(IOUSBDeviceInterface **usb_dev, char *buf) {
+int razer_attr_read_mode_game(IOUSBDeviceInterface **usb_dev, char *buf) {
     struct razer_report report = razer_chroma_standard_get_led_state(VARSTORE, GAME_LED);
     struct razer_report response;
     
@@ -97,8 +97,8 @@ static ssize_t razer_attr_read_mode_game(IOUSBDeviceInterface **usb_dev, char *b
  * When 1 is written (as a character, 0x31) Macro mode will be enabled, if 0 is written (0x30)
  * then game mode will be disabled
  */
-static ssize_t razer_attr_write_mode_macro(IOUSBDeviceInterface **usb_dev, const char *buf, size_t count) {
-    unsigned char enabled = (unsigned char)simple_strtoul(buf, NULL, 10);
+int razer_attr_write_mode_macro(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
+    unsigned char enabled = (unsigned char)strtol(buf, NULL, 10);
     struct razer_report report = razer_chroma_standard_set_led_state(VARSTORE, MACRO_LED, enabled);
     
     razer_send_payload(usb_dev, &report);
@@ -111,9 +111,9 @@ static ssize_t razer_attr_write_mode_macro(IOUSBDeviceInterface **usb_dev, const
  *
  * When 1 is written the LED will blink, 0 will static
  */
-static ssize_t razer_attr_write_mode_macro_effect(IOUSBDeviceInterface **usb_dev, const char *buf, size_t count) {
+int razer_attr_write_mode_macro_effect(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
     struct razer_report report;
-    unsigned char enabled = (unsigned char)simple_strtoul(buf, NULL, 10);
+    unsigned char enabled = (unsigned char)strtol(buf, NULL, 10);
     report = razer_chroma_standard_set_led_effect(VARSTORE, MACRO_LED, enabled);
     razer_send_payload(usb_dev, &report);
     
@@ -125,7 +125,7 @@ static ssize_t razer_attr_write_mode_macro_effect(IOUSBDeviceInterface **usb_dev
  *
  * Returns a string
  */
-static ssize_t razer_attr_read_mode_macro_effect(IOUSBDeviceInterface **usb_dev, char *buf) {
+int razer_attr_read_mode_macro_effect(IOUSBDeviceInterface **usb_dev, char *buf) {
     struct razer_report report = razer_chroma_standard_get_led_effect(VARSTORE, MACRO_LED);
     struct razer_report response = razer_send_payload(usb_dev, &report);
     
@@ -137,7 +137,7 @@ static ssize_t razer_attr_read_mode_macro_effect(IOUSBDeviceInterface **usb_dev,
  *
  * The brightness oscillates between fully on and fully off generating a pulsing effect
  */
-static ssize_t razer_attr_write_mode_pulsate(IOUSBDeviceInterface **usb_dev, const char *buf, size_t count) {
+int razer_attr_write_mode_pulsate(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
     struct razer_report report = razer_chroma_standard_set_led_effect(VARSTORE, BACKLIGHT_LED, 0x02);
     razer_send_payload(usb_dev, &report);
     
@@ -149,7 +149,7 @@ static ssize_t razer_attr_write_mode_pulsate(IOUSBDeviceInterface **usb_dev, con
  *
  * Returns a string
  */
-static ssize_t razer_attr_read_mode_pulsate(IOUSBDeviceInterface **usb_dev, char *buf) {
+int razer_attr_read_mode_pulsate(IOUSBDeviceInterface **usb_dev, char *buf) {
     struct razer_report report = razer_chroma_standard_get_led_effect(VARSTORE, LOGO_LED);
     struct razer_report response = razer_send_payload(usb_dev, &report);
     
@@ -163,7 +163,7 @@ static ssize_t razer_attr_read_mode_pulsate(IOUSBDeviceInterface **usb_dev, char
  *
  * Returns a string
  */
-static ssize_t razer_attr_read_tartarus_profile_led_red(IOUSBDeviceInterface **usb_dev, char *buf) {
+int razer_attr_read_tartarus_profile_led_red(IOUSBDeviceInterface **usb_dev, char *buf) {
     struct razer_report report = razer_chroma_standard_get_led_state(VARSTORE, RED_PROFILE_LED);
     struct razer_report response = razer_send_payload(usb_dev, &report);
     
@@ -175,7 +175,7 @@ static ssize_t razer_attr_read_tartarus_profile_led_red(IOUSBDeviceInterface **u
  *
  * Returns a string
  */
-static ssize_t razer_attr_read_tartarus_profile_led_green(IOUSBDeviceInterface **usb_dev, char *buf) {
+int razer_attr_read_tartarus_profile_led_green(IOUSBDeviceInterface **usb_dev, char *buf) {
     struct razer_report report = razer_chroma_standard_get_led_state(VARSTORE, GREEN_PROFILE_LED);
     struct razer_report response = razer_send_payload(usb_dev, &report);
     
@@ -187,7 +187,7 @@ static ssize_t razer_attr_read_tartarus_profile_led_green(IOUSBDeviceInterface *
  *
  * Returns a string
  */
-static ssize_t razer_attr_read_tartarus_profile_led_blue(IOUSBDeviceInterface **usb_dev, char *buf) {
+int razer_attr_read_tartarus_profile_led_blue(IOUSBDeviceInterface **usb_dev, char *buf) {
     struct razer_report report = razer_chroma_standard_get_led_state(VARSTORE, BLUE_PROFILE_LED);
     struct razer_report response = razer_send_payload(usb_dev, &report);
     
@@ -199,7 +199,7 @@ static ssize_t razer_attr_read_tartarus_profile_led_blue(IOUSBDeviceInterface **
  *
  * No keyboard effect is activated whenever this file is written to
  */
-static ssize_t razer_attr_write_mode_none(IOUSBDeviceInterface **usb_dev, const char *buf, size_t count) {
+int razer_attr_write_mode_none(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
     struct razer_report report;
     razer_chroma_standard_matrix_effect_none(VARSTORE, BACKLIGHT_LED);
     
@@ -216,8 +216,8 @@ static ssize_t razer_attr_write_mode_none(IOUSBDeviceInterface **usb_dev, const 
  *
  * For the extended its 0x00 and 0x01
  */
-static ssize_t razer_attr_write_mode_wave(IOUSBDeviceInterface **usb_dev, const char *buf, size_t count) {
-    unsigned char direction = (unsigned char)simple_strtoul(buf, NULL, 10);
+int razer_attr_write_mode_wave(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
+    unsigned char direction = (unsigned char)strtol(buf, NULL, 10);
     struct razer_report report;
     report = razer_chroma_standard_matrix_effect_wave(VARSTORE, BACKLIGHT_LED, direction);
     
@@ -231,7 +231,7 @@ static ssize_t razer_attr_write_mode_wave(IOUSBDeviceInterface **usb_dev, const 
  *
  * Specrum effect mode is activated whenever the file is written to
  */
-static ssize_t razer_attr_write_mode_spectrum(IOUSBDeviceInterface **usb_dev, const char *buf, size_t count) {
+int razer_attr_write_mode_spectrum(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
     struct razer_report report;
     report = razer_chroma_standard_matrix_effect_spectrum(VARSTORE, BACKLIGHT_LED);
     razer_send_payload(usb_dev, &report);
@@ -244,7 +244,7 @@ static ssize_t razer_attr_write_mode_spectrum(IOUSBDeviceInterface **usb_dev, co
  *
  * Sets reactive mode when this file is written to. A speed byte and 3 RGB bytes should be written
  */
-static ssize_t razer_attr_write_mode_reactive(IOUSBDeviceInterface **usb_dev, const char *buf, size_t count) {
+int razer_attr_write_mode_reactive(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
     struct razer_report report;
     
     if(count == 4) {
@@ -261,16 +261,16 @@ static ssize_t razer_attr_write_mode_reactive(IOUSBDeviceInterface **usb_dev, co
 /**
  * Write device file "mode_static"
  *
- * Set the keyboard to static mode when 3 RGB bytes are written
+ * Set the keyboard to mode when 3 RGB bytes are written
  */
-static ssize_t razer_attr_write_mode_static(IOUSBDeviceInterface **usb_dev, const char *buf, size_t count) {
+int razer_attr_write_mode_static(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
     struct razer_report report;
     
     if(count == 3) {
         report = razer_chroma_standard_matrix_effect_static(VARSTORE, BACKLIGHT_LED, (struct razer_rgb*)&buf[0]);
         razer_send_payload(usb_dev, &report);
     } else {
-        printf("razerkbd: Static mode only accepts RGB (3byte)");
+        printf("razerkbd: mode only accepts RGB (3byte)");
     }
     
     return count;
@@ -286,7 +286,7 @@ static ssize_t razer_attr_write_mode_static(IOUSBDeviceInterface **usb_dev, cons
 * 4 bytes, speed, rgb
 * 1 byte, speed
 */
-static ssize_t razer_attr_write_mode_starlight(IOUSBDeviceInterface **usb_dev, const char *buf, size_t count) {
+int razer_attr_write_mode_starlight(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
     struct razer_rgb rgb1 = {.r = 0x00, .g = 0xFF, .b = 0x00};
     struct razer_report report;
     report = razer_chroma_standard_matrix_effect_starlight_single(VARSTORE, BACKLIGHT_LED, 0x01, &rgb1);
@@ -298,7 +298,7 @@ static ssize_t razer_attr_write_mode_starlight(IOUSBDeviceInterface **usb_dev, c
 /**
  * Write device file "mode_breath"
  */
-static ssize_t razer_attr_write_mode_breath(IOUSBDeviceInterface **usb_dev, const char *buf, size_t count) {
+int razer_attr_write_mode_breath(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
     struct razer_report report;
     
     switch(count) {
@@ -327,8 +327,8 @@ static ssize_t razer_attr_write_mode_breath(IOUSBDeviceInterface **usb_dev, cons
  *
  * Sets the logo lighting state to the ASCII number written to this file.
  */
-static ssize_t razer_attr_write_set_logo(IOUSBDeviceInterface **usb_dev, const char *buf, size_t count) {
-    unsigned char state = (unsigned char)simple_strtoul(buf, NULL, 10);
+int razer_attr_write_set_logo(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
+    unsigned char state = (unsigned char)strtol(buf, NULL, 10);
     struct razer_report report = razer_chroma_standard_set_led_effect(VARSTORE, LOGO_LED, state);
     
     razer_send_payload(usb_dev, &report);
@@ -341,7 +341,7 @@ static ssize_t razer_attr_write_set_logo(IOUSBDeviceInterface **usb_dev, const c
  *
  * Sets the keyboard to custom mode whenever the file is written to
  */
-static ssize_t razer_attr_write_mode_custom(IOUSBDeviceInterface **usb_dev, const char *buf, size_t count) {
+int razer_attr_write_mode_custom(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
     struct razer_report report;
     
     report = razer_chroma_standard_matrix_effect_custom_frame(VARSTORE); // Possibly could use VARSTORE
@@ -354,8 +354,8 @@ static ssize_t razer_attr_write_mode_custom(IOUSBDeviceInterface **usb_dev, cons
  *
  * Sets the logo lighting state to the ASCII number written to this file.
  */
-static ssize_t razer_attr_write_set_fn_toggle(IOUSBDeviceInterface **usb_dev, const char *buf, size_t count) {
-    unsigned char state = (unsigned char)simple_strtoul(buf, NULL, 10);
+int razer_attr_write_set_fn_toggle(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
+    unsigned char state = (unsigned char)strtol(buf, NULL, 10);
     struct razer_report report = razer_chroma_misc_fn_key_toggle(state);
     razer_send_payload(usb_dev, &report);
     
@@ -367,8 +367,8 @@ static ssize_t razer_attr_write_set_fn_toggle(IOUSBDeviceInterface **usb_dev, co
  *
  * Sets the brightness to the ASCII number written to this file.
  */
-static ssize_t razer_attr_write_set_brightness(IOUSBDeviceInterface **usb_dev, const char *buf, size_t count) {
-    unsigned char brightness = (unsigned char)simple_strtoul(buf, NULL, 10);
+int razer_attr_write_set_brightness(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
+    unsigned char brightness = (unsigned char)strtol(buf, NULL, 10);
     struct razer_report report;
     
     
@@ -383,7 +383,7 @@ static ssize_t razer_attr_write_set_brightness(IOUSBDeviceInterface **usb_dev, c
  *
  * Returns a string
  */
-static ssize_t razer_attr_read_set_brightness(IOUSBDeviceInterface **usb_dev, char *buf) {
+int razer_attr_read_set_brightness(IOUSBDeviceInterface **usb_dev, char *buf) {
     unsigned char brightness = 0;
     struct razer_report report;
     struct razer_report response;
@@ -403,9 +403,9 @@ static ssize_t razer_attr_read_set_brightness(IOUSBDeviceInterface **usb_dev, ch
  * Format
  * ROW_ID START_COL STOP_COL RGB...
  */
-static ssize_t razer_attr_write_matrix_custom_frame(IOUSBDeviceInterface **usb_dev, const char *buf, size_t count) {
+int razer_attr_write_matrix_custom_frame(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
     struct razer_report report;
-    size_t offset = 0;
+    int offset = 0;
     unsigned char row_id;
     unsigned char start_col;
     unsigned char stop_col;

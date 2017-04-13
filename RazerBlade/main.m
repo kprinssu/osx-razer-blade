@@ -7,8 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#include <IOKit/IOKitLib.h>
-#include <IOKit/usb/IOUSBLib.h>
 
 #include "razerkbd_driver.h"
 
