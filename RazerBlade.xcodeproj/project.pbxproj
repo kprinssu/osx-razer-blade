@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B6A0B3F1E9F43B7005C0F32 /* razerkbd_driver.c in Sources */ = {isa = PBXBuildFile; fileRef = 7B6A0B3D1E9F43B7005C0F32 /* razerkbd_driver.c */; };
+		7BB28C691E9F1FAA008E9477 /* razercommon.c in Sources */ = {isa = PBXBuildFile; fileRef = 7BB28C671E9F1FAA008E9477 /* razercommon.c */; };
+		7BB28C6C1E9F404A008E9477 /* razerchromacommon.c in Sources */ = {isa = PBXBuildFile; fileRef = 7BB28C6B1E9F404A008E9477 /* razerchromacommon.c */; };
 		7BB33D611E9F16BA0012A8C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB33D601E9F16BA0012A8C8 /* main.m */; };
+		7BB33D691E9F16D60012A8C8 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BB33D681E9F16D60012A8C8 /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +27,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7B6A0B3D1E9F43B7005C0F32 /* razerkbd_driver.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = razerkbd_driver.c; sourceTree = "<group>"; };
+		7B6A0B3E1E9F43B7005C0F32 /* razerkbd_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = razerkbd_driver.h; sourceTree = "<group>"; };
+		7BB28C661E9F1E7E008E9477 /* razercommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = razercommon.h; sourceTree = "<group>"; };
+		7BB28C671E9F1FAA008E9477 /* razercommon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = razercommon.c; sourceTree = "<group>"; };
+		7BB28C6A1E9F3FEA008E9477 /* razerchromacommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = razerchromacommon.h; sourceTree = "<group>"; };
+		7BB28C6B1E9F404A008E9477 /* razerchromacommon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = razerchromacommon.c; sourceTree = "<group>"; };
 		7BB33D5D1E9F16BA0012A8C8 /* RazerBlade */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RazerBlade; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BB33D601E9F16BA0012A8C8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7BB33D681E9F16D60012A8C8 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = ../../../../System/Library/Frameworks/IOKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BB33D691E9F16D60012A8C8 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +55,7 @@
 			children = (
 				7BB33D5F1E9F16BA0012A8C8 /* RazerBlade */,
 				7BB33D5E1E9F16BA0012A8C8 /* Products */,
+				7BB33D671E9F16D60012A8C8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,8 +71,22 @@
 			isa = PBXGroup;
 			children = (
 				7BB33D601E9F16BA0012A8C8 /* main.m */,
+				7BB28C661E9F1E7E008E9477 /* razercommon.h */,
+				7BB28C671E9F1FAA008E9477 /* razercommon.c */,
+				7BB28C6A1E9F3FEA008E9477 /* razerchromacommon.h */,
+				7BB28C6B1E9F404A008E9477 /* razerchromacommon.c */,
+				7B6A0B3E1E9F43B7005C0F32 /* razerkbd_driver.h */,
+				7B6A0B3D1E9F43B7005C0F32 /* razerkbd_driver.c */,
 			);
 			path = RazerBlade;
+			sourceTree = "<group>";
+		};
+		7BB33D671E9F16D60012A8C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7BB33D681E9F16D60012A8C8 /* IOKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +146,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BB28C691E9F1FAA008E9477 /* razercommon.c in Sources */,
+				7B6A0B3F1E9F43B7005C0F32 /* razerkbd_driver.c in Sources */,
 				7BB33D611E9F16BA0012A8C8 /* main.m in Sources */,
+				7BB28C6C1E9F404A008E9477 /* razerchromacommon.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +278,7 @@
 				7BB33D661E9F16BA0012A8C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
