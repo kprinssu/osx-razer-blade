@@ -73,7 +73,7 @@ int main(int argc, const char * argv[]) {
             kr = (*dev)->GetDeviceProduct(dev, &product);
             kr = (*dev)->GetDeviceReleaseNumber(dev, &release);
             
-            if ((vendor != USB_VENDOR_ID_RAZER) || (product != USB_DEVICE_ID_RAZER_BLADE_STEALTH_LATE_2016)) {
+            if (!is_blade_laptop(dev)) {
                 (void) (*dev)->Release(dev);
                 continue;
             }
@@ -87,7 +87,7 @@ int main(int argc, const char * argv[]) {
                 
             }
             
-            razer_attr_write_mode_starlight(dev, NULL, -1);
+            razer_attr_write_mode_breath(dev, "1", 1);
             
             //Close this device and release object
             kr = (*dev)->USBDeviceClose(dev);
