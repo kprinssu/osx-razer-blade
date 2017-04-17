@@ -7,7 +7,7 @@ Xcode is needed to build and run this project.
 
 Usage:
 1. Clone the repo
-2. Edit the `razer_attr_write_mode_breath` line with your own effect.
+2. Edit the `razer_attr_write_mode_breath` line (in main.m) with your own effect (see header file in razer_knd.h).
 3. Build and run the project.
 
 This project unless otherwise stated in the file is licensed under the GPLv2 license.
