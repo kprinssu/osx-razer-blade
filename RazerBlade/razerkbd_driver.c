@@ -32,7 +32,18 @@ bool is_blade_laptop(IOUSBDeviceInterface **usb_dev) {
         case USB_DEVICE_ID_RAZER_BLADE_STEALTH:
         case USB_DEVICE_ID_RAZER_BLADE_STEALTH_LATE_2016:
         case USB_DEVICE_ID_RAZER_BLADE_PRO_LATE_2016:
+        case USB_DEVICE_ID_RAZER_BLADE_2018:
+        case USB_DEVICE_ID_RAZER_BLADE_2018_MERCURY:
+        case USB_DEVICE_ID_RAZER_BLADE_2018_BASE:
+        case USB_DEVICE_ID_RAZER_BLADE_2019_ADV:
+        case USB_DEVICE_ID_RAZER_BLADE_MID_2019_MERCURY:
         case USB_DEVICE_ID_RAZER_BLADE_QHD:
+        case USB_DEVICE_ID_RAZER_BLADE_LATE_2016:
+        case USB_DEVICE_ID_RAZER_BLADE_STEALTH_MID_2017:
+        case USB_DEVICE_ID_RAZER_BLADE_STEALTH_LATE_2017:
+        case USB_DEVICE_ID_RAZER_BLADE_STEALTH_2019:
+        case USB_DEVICE_ID_RAZER_BLADE_PRO_2017:
+        case USB_DEVICE_ID_RAZER_BLADE_PRO_2017_FULLHD:
             return true;
     }
     
@@ -52,12 +63,52 @@ int razer_attr_read_device_type(IOUSBDeviceInterface **usb_dev, char *buf) {
     
     switch (product)
     {
+        case USB_DEVICE_ID_RAZER_NOSTROMO:
+            device_type = "Razer Nostromo\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_ORBWEAVER:
+            device_type = "Razer Orbweaver\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_ORBWEAVER_CHROMA:
+            device_type = "Razer Orbweaver Chroma\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLACKWIDOW_STEALTH:
+            device_type = "Razer BlackWidow Stealth\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLACKWIDOW_STEALTH_EDITION:
+            device_type = "Razer BlackWidow Stealth Edition\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLACKWIDOW_ULTIMATE_2012:
+            device_type = "Razer BlackWidow Ultimate 2012\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLACKWIDOW_ULTIMATE_2013:
+            device_type = "Razer BlackWidow Ultimate 2013\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLACKWIDOW_ULTIMATE_2016:
+            device_type = "Razer BlackWidow Ultimate 2016\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLACKWIDOW_X_ULTIMATE:
+            device_type = "Razer BlackWidow X Ultimate\n";
+            break;
+            
         case USB_DEVICE_ID_RAZER_BLADE_STEALTH:
             device_type = "Razer Blade Stealth\n";
             break;
             
         case USB_DEVICE_ID_RAZER_BLADE_STEALTH_LATE_2016:
             device_type = "Razer Blade Stealth (Late 2016)\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLADE_STEALTH_MID_2017:
+            device_type = "Razer Blade Stealth (Mid 2017)\n";
             break;
             
         case USB_DEVICE_ID_RAZER_BLADE_QHD:
@@ -68,14 +119,121 @@ int razer_attr_read_device_type(IOUSBDeviceInterface **usb_dev, char *buf) {
             device_type = "Razer Blade Pro (Late 2016)\n";
             break;
             
+        case USB_DEVICE_ID_RAZER_BLADE_2018:
+            device_type = "Razer Blade 15 (2018)\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLADE_2018_MERCURY:
+            device_type = "Razer Blade 15 (2018) Mercury\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLADE_2018_BASE:
+            device_type = "Razer Blade 15 (2018) Base Model\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLADE_2019_ADV:
+            device_type = "Razer Blade 15 (2019) Advanced\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLADE_MID_2019_MERCURY:
+            device_type = "Razer Blade 15 (Mid 2019) Mercury White\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLADE_LATE_2016:
+            device_type = "Razer Blade (Late 2016)\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLADE_PRO_2017:
+            device_type = "Razer Blade Pro (2017)\n";
+            break;
+        case USB_DEVICE_ID_RAZER_BLADE_PRO_2017_FULLHD:
+            device_type = "Razer Blade Pro FullHD (2017)\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLADE_STEALTH_LATE_2017:
+            device_type = "Razer Blade Stealth (Late 2017)\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLADE_STEALTH_2019:
+            device_type = "Razer Blade Stealth (2019)\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_TARTARUS:
+            device_type = "Razer Tartarus\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_TARTARUS_CHROMA:
+            device_type = "Razer Tartarus Chroma\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLACKWIDOW_OVERWATCH:
+            device_type = "Razer BlackWidow Chroma (Overwatch)\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLACKWIDOW_CHROMA:
+            device_type = "Razer BlackWidow Chroma\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_DEATHSTALKER_EXPERT:
+            device_type = "Razer Deathstalker Expert\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_DEATHSTALKER_CHROMA:
+            device_type = "Razer DeathStalker Chroma\n";
+            break;
+            
         case USB_DEVICE_ID_RAZER_BLACKWIDOW_CHROMA_TE:
             device_type = "Razer BlackWidow Chroma Tournament Edition\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLACKWIDOW_X_CHROMA:
+            device_type = "Razer BlackWidow X Chroma\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLACKWIDOW_X_CHROMA_TE:
+            device_type = "Razer BlackWidow X Chroma Tournament Edition\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLACKWIDOW_LITE:
+            device_type = "Razer BlackWidow Lite\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLACKWIDOW_2019:
+            device_type = "Razer BlackWidow 2019\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_ORNATA:
+            device_type = "Razer Ornata\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_ORNATA_CHROMA:
+            device_type = "Razer Ornata Chroma\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_HUNTSMAN_ELITE:
+            device_type = "Razer Huntsman Elite\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLACKWIDOW_ELITE:
+            device_type = "Razer BlackWidow Elite\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_CYNOSA_CHROMA:
+            device_type = "Razer Cynosa Chroma\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_BLACKWIDOW_CHROMA_V2:
+            device_type = "Razer BlackWidow Chroma V2\n";
+            break;
+            
+        case USB_DEVICE_ID_RAZER_ANANSI:
+            device_type = "Razer Anansi\n";
             break;
         default:
             device_type = "Unknown Device\n";
     }
     
-    return sprintf(buf, device_type);
+    return sprintf(buf, "%s", device_type);
 }
 
 /**
@@ -277,15 +435,15 @@ int razer_attr_write_mode_static(IOUSBDeviceInterface **usb_dev, const char *buf
 }
 
 /**
-* Write device file "mode_startlight"
-*
-* Starlight keyboard effect is activated whenever this file is written to (for bw2016)
-*
-* Or if an Ornata
-* 7 bytes, speed, rgb, rgb
-* 4 bytes, speed, rgb
-* 1 byte, speed
-*/
+ * Write device file "mode_starlight"
+ *
+ * Starlight keyboard effect is activated whenever this file is written to (for bw2016)
+ *
+ * Or if an Ornata
+ * 7 bytes, speed, rgb, rgb
+ * 4 bytes, speed, rgb
+ * 1 byte, speed
+ */
 int razer_attr_write_mode_starlight(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
     struct razer_rgb rgb1 = {.r = 0x00, .g = 0xFF, .b = 0x00};
     struct razer_report report;
@@ -302,21 +460,21 @@ int razer_attr_write_mode_breath(IOUSBDeviceInterface **usb_dev, const char *buf
     struct razer_report report;
     
     switch(count) {
+        case 1: // "Random" colour mode
+            report = razer_chroma_standard_matrix_effect_breathing_random(VARSTORE, BACKLIGHT_LED);
+            razer_send_payload(usb_dev, &report);
+            break;
         case 3: // Single colour mode
             report = razer_chroma_standard_matrix_effect_breathing_single(VARSTORE, BACKLIGHT_LED, (struct razer_rgb*)&buf[0]);
             razer_send_payload(usb_dev, &report);
             break;
-            
         case 6: // Dual colour mode
             report = razer_chroma_standard_matrix_effect_breathing_dual(VARSTORE, BACKLIGHT_LED, (struct razer_rgb*)&buf[0], (struct razer_rgb*)&buf[3]);
             razer_send_payload(usb_dev, &report);
             break;
-            
-        default: // "Random" colour mode
-            report = razer_chroma_standard_matrix_effect_breathing_random(VARSTORE, BACKLIGHT_LED);
-            razer_send_payload(usb_dev, &report);
+        default:
+            printf("Unsupported breath mode.");
             break;
-            // TODO move default to case 1:. Then default: printk(warning). Also remove pointless buffer
     }
     
     return count;
@@ -329,7 +487,15 @@ int razer_attr_write_mode_breath(IOUSBDeviceInterface **usb_dev, const char *buf
  */
 int razer_attr_write_set_logo(IOUSBDeviceInterface **usb_dev, const char *buf, int count) {
     unsigned char state = (unsigned char)strtol(buf, NULL, 10);
-    struct razer_report report = razer_chroma_standard_set_led_effect(VARSTORE, LOGO_LED, state);
+    struct razer_report report = {0};
+    
+    // Blade laptops are... different. They use state instead of effect.
+    // Note: This does allow setting of mode 2 ("blink"), but this is an undocumented feature.
+    if (is_blade_laptop(usb_dev) && (state == 0 || state == 1)) {
+        report = razer_chroma_standard_set_led_state(VARSTORE, LOGO_LED, state);
+    } else {
+        report = razer_chroma_standard_set_led_effect(VARSTORE, LOGO_LED, state);
+    }
     
     razer_send_payload(usb_dev, &report);
     
@@ -456,7 +622,24 @@ int razer_attr_write_matrix_custom_frame(IOUSBDeviceInterface **usb_dev, const c
  * Send report to the keyboard
  */
 int razer_get_report(IOUSBDeviceInterface **usb_dev, struct razer_report *request_report, struct razer_report *response_report) {
-    return razer_get_usb_response(usb_dev, 0x02, request_report, 0x02, response_report);
+    UInt16 product = -1;
+    (*usb_dev)->GetDeviceProduct(usb_dev, &product);
+    
+    uint report_index;
+    uint response_index;
+    
+    switch (product) {
+        case USB_DEVICE_ID_RAZER_ANANSI:
+            report_index = 0x02;
+            response_index = 0x02;
+            break;
+        default:
+            report_index = 0x01;
+            response_index = 0x01;
+            break;
+    }
+    
+    return razer_get_usb_response(usb_dev, report_index, request_report, response_index, response_report);
 }
 
 /**
@@ -465,21 +648,19 @@ int razer_get_report(IOUSBDeviceInterface **usb_dev, struct razer_report *reques
 struct razer_report razer_send_payload(IOUSBDeviceInterface **dev, struct razer_report *request_report) {
     IOReturn retval = -1;
     
-    struct razer_report response_report;
+    struct razer_report response_report = {0};
     request_report->crc = razer_calculate_crc(request_report);
     
     retval = razer_get_report(dev, request_report, &response_report);
     
-    if(retval == kIOReturnSuccess)
-    {
+    if (retval == kIOReturnSuccess) {
         // Check the packet number, class and command are the same
         if(response_report.remaining_packets != request_report->remaining_packets ||
            response_report.command_class != request_report->command_class ||
-           response_report.command_id.id != request_report->command_id.id)
-        {
+           response_report.command_id.id != request_report->command_id.id) {
             printf("Response doesnt match request\n");
-        } else if (response_report.status == RAZER_CMD_BUSY) {
-            printf("Device is busy\n");
+            //        } else if (response_report.status == RAZER_CMD_BUSY) {
+            //            printf("Device is busy\n");
         } else if (response_report.status == RAZER_CMD_FAILURE) {
             printf("Command failed\n");
         } else if (response_report.status == RAZER_CMD_NOT_SUPPORTED) {
@@ -487,6 +668,8 @@ struct razer_report razer_send_payload(IOUSBDeviceInterface **dev, struct razer_
         } else if (response_report.status == RAZER_CMD_TIMEOUT) {
             printf("Command timed out\n");
         }
+    } else {
+        printf("Invalid Report Length");
     }
     
     return response_report;

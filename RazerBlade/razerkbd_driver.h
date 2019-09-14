@@ -16,29 +16,49 @@
 #include <IOKit/IOKitLib.h>
 #include <IOKit/usb/IOUSBLib.h>
 
-#ifndef USB_VENDOR_ID_RAZER
-#define USB_VENDOR_ID_RAZER 0x1532
-#endif
-
-#ifndef USB_DEVICE_ID_RAZER_BLADE_STEALTH
+#define USB_DEVICE_ID_RAZER_BLACKWIDOW_ULTIMATE_2012 0x010D
+// 2011 or so edition, see https://web.archive.org/web/20111113132427/http://store.razerzone.com:80/store/razerusa/en_US/pd/productID.235228400/categoryId.49136200/parentCategoryId.35156900
+#define USB_DEVICE_ID_RAZER_BLACKWIDOW_STEALTH_EDITION 0x010E
+#define USB_DEVICE_ID_RAZER_ANANSI 0x010F
+#define USB_DEVICE_ID_RAZER_NOSTROMO 0x0111
+#define USB_DEVICE_ID_RAZER_ORBWEAVER 0x0113
+#define USB_DEVICE_ID_RAZER_BLACKWIDOW_ULTIMATE_2013 0x011A
+#define USB_DEVICE_ID_RAZER_BLACKWIDOW_STEALTH 0x011B
+#define USB_DEVICE_ID_RAZER_TARTARUS 0x0201
+#define USB_DEVICE_ID_RAZER_DEATHSTALKER_EXPERT 0x0202
+#define USB_DEVICE_ID_RAZER_BLACKWIDOW_CHROMA 0x0203
+#define USB_DEVICE_ID_RAZER_DEATHSTALKER_CHROMA 0x0204
 #define USB_DEVICE_ID_RAZER_BLADE_STEALTH 0x0205
-#endif
-
-#ifndef USB_DEVICE_ID_RAZER_BLACKWIDOW_CHROMA_TE
+#define USB_DEVICE_ID_RAZER_ORBWEAVER_CHROMA 0x0207
+#define USB_DEVICE_ID_RAZER_TARTARUS_CHROMA 0x0208
 #define USB_DEVICE_ID_RAZER_BLACKWIDOW_CHROMA_TE 0x0209
-#endif
-
-#ifndef USB_DEVICE_ID_RAZER_BLADE_QHD
 #define USB_DEVICE_ID_RAZER_BLADE_QHD 0x020F
-#endif
-
-#ifndef USB_DEVICE_ID_RAZER_BLADE_PRO_LATE_2016
 #define USB_DEVICE_ID_RAZER_BLADE_PRO_LATE_2016 0x0210
-#endif
-
-#ifndef USB_DEVICE_ID_RAZER_BLADE_STEALTH_LATE_2016
+#define USB_DEVICE_ID_RAZER_BLADE_2018 0x0233
+#define USB_DEVICE_ID_RAZER_BLADE_2019_ADV 0x023a
+#define USB_DEVICE_ID_RAZER_BLADE_2018_BASE 0x023b
+#define USB_DEVICE_ID_RAZER_BLADE_2018_MERCURY 0x0240
+#define USB_DEVICE_ID_RAZER_BLADE_MID_2019_MERCURY 0x0245
+#define USB_DEVICE_ID_RAZER_BLACKWIDOW_OVERWATCH 0x0211
+#define USB_DEVICE_ID_RAZER_BLACKWIDOW_ULTIMATE_2016 0x0214
+#define USB_DEVICE_ID_RAZER_BLACKWIDOW_X_CHROMA 0x0216
+#define USB_DEVICE_ID_RAZER_BLACKWIDOW_X_ULTIMATE 0x0217
+#define USB_DEVICE_ID_RAZER_BLACKWIDOW_X_CHROMA_TE 0x021A
+#define USB_DEVICE_ID_RAZER_ORNATA_CHROMA 0x021E
+#define USB_DEVICE_ID_RAZER_ORNATA 0x021F
 #define USB_DEVICE_ID_RAZER_BLADE_STEALTH_LATE_2016 0x0220
-#endif
+#define USB_DEVICE_ID_RAZER_BLACKWIDOW_CHROMA_V2 0x0221
+#define USB_DEVICE_ID_RAZER_BLADE_LATE_2016 0x0224
+#define USB_DEVICE_ID_RAZER_BLADE_PRO_2017 0x0225
+#define USB_DEVICE_ID_RAZER_HUNTSMAN_ELITE 0x0226
+#define USB_DEVICE_ID_RAZER_BLACKWIDOW_ELITE 0x0228
+#define USB_DEVICE_ID_RAZER_CYNOSA_CHROMA 0x022A
+#define USB_DEVICE_ID_RAZER_BLADE_STEALTH_MID_2017 0x022D
+#define USB_DEVICE_ID_RAZER_BLADE_PRO_2017_FULLHD 0x022F
+#define USB_DEVICE_ID_RAZER_BLADE_STEALTH_LATE_2017 0x0232
+#define USB_DEVICE_ID_RAZER_BLACKWIDOW_LITE 0x0235
+#define USB_DEVICE_ID_RAZER_BLADE_STEALTH_2019 0x0239
+#define USB_DEVICE_ID_RAZER_BLACKWIDOW_2019 0x0241
 
 #define RAZER_STEALTH_ROW_LEN 0x10
 #define RAZER_STEALTH_ROWS_NUM 6
@@ -68,7 +88,7 @@ int razer_attr_write_mode_none(IOUSBDeviceInterface **usb_dev, const char *buf, 
 int razer_attr_write_mode_wave(IOUSBDeviceInterface **usb_dev, const char *buf, int count);
 int razer_attr_write_mode_spectrum(IOUSBDeviceInterface **usb_dev, const char *buf, int count);
 int razer_attr_write_mode_reactive(IOUSBDeviceInterface **usb_dev, const char *buf, int count);
-int razer_attr_write_mode_reactive(IOUSBDeviceInterface **usb_dev, const char *buf, int count);
+int razer_attr_write_mode_static(IOUSBDeviceInterface **usb_dev, const char *buf, int count);
 int razer_attr_write_mode_starlight(IOUSBDeviceInterface **usb_dev, const char *buf, int count);
 int razer_attr_write_mode_breath(IOUSBDeviceInterface **usb_dev, const char *buf, int count);
 int razer_attr_write_set_logo(IOUSBDeviceInterface **usb_dev, const char *buf, int count);
